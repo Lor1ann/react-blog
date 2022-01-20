@@ -27,7 +27,7 @@ const Post = ({ title, views, text, date, photo }) => {
         ) : null}
       </div>
       <div className={styles.postInfo}>
-        <p>{date}</p>
+        <p>{date.toLocaleString()}</p>
         <div className={styles.postViews}>
           <p>{views}</p>
         </div>

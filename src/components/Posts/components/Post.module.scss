@@ -2,16 +2,16 @@
 
 .post {
   line-height: 24px;
-  text-align: left;
   flex-direction: column;
   justify-content: flex-start;
   max-height: 255px;
+  max-width: 720px;
   padding: 30px;
   align-items: center;
   .postInfo {
     color: #c1c1c1;
     display: flex;
-
+    margin: 0;
     p {
       margin-right: 21px;
     }
@@ -27,16 +27,20 @@
       font-size: 24px;
       color: #080b0e;
       line-height: 30px;
+      margin: 0;
     }
     .postText {
       line-height: 24px;
       color: #898c90;
+      margin-bottom: 20px;
     }
     .textContent {
       margin-right: 40px;
+      margin: 0;
     }
     .postPhoto {
       border-radius: 15px;
+      margin-left: 15px;
     }
   }
 }
