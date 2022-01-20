@@ -1,6 +1,18 @@
 .App {
-  width: 1800px;
+  width: 100%;
   .app-flex {
     display: flex;
+    justify-content: flex-end;
+  }
+  .nav-flex {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1320px) {
+  .app-flex {
+    flex-direction: column;
   }
 }

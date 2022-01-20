@@ -1,0 +1,27 @@
+.drawer {
+  line-height: 24px;
+  cursor: pointer;
+  max-width: 100px;
+  width: 100%;
+  position: fixed;
+  height: 100vh;
+  background-color: #13315e;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  .menu {
+    margin-bottom: 34px;
+    .menuText {
+      color: #fff;
+      font-size: 17px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      transform: rotate(-90deg);
+      letter-spacing: 0.12em;
+    }
+    .menuImg {
+      margin-left: 22px;
+    }
+  }
+}

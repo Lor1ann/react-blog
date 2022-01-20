@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,600&display=swap");
+
+.post {
+  line-height: 24px;
+  text-align: left;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 255px;
+  padding: 30px;
+  align-items: center;
+  .postInfo {
+    color: #c1c1c1;
+    display: flex;
+
+    p {
+      margin-right: 21px;
+    }
+  }
+
+  .postContent {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .postTitle {
+      font-family: Nunito;
+      font-weight: 800;
+      font-size: 24px;
+      color: #080b0e;
+      line-height: 30px;
+    }
+    .postText {
+      line-height: 24px;
+      color: #898c90;
+    }
+    .textContent {
+      margin-right: 40px;
+    }
+    .postPhoto {
+      border-radius: 15px;
+    }
+  }
+}

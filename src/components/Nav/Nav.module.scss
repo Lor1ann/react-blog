@@ -1,0 +1,45 @@
+.nav {
+  padding: 21px 29px;
+  display: flex;
+  justify-content: space-between;
+  .navLogo {
+    color: #0a3465;
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 800;
+  }
+  .navEnd {
+    display: flex;
+    margin-right: 120px;
+  }
+  .search {
+    margin-right: 27px;
+    img {
+      cursor: pointer;
+      width: 20px;
+      height: auto;
+    }
+  }
+  .user {
+    cursor: pointer;
+    img {
+      width: 20px;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .nav {
+    margin-top: 40px;
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+    .navLogo {
+      margin-right: 300px;
+    }
+    .navEnd {
+      margin-right: 0;
+    }
+  }
+}

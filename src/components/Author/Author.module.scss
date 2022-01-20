@@ -40,3 +40,12 @@
     }
   }
 }
+
+@media (max-width: 1320px) {
+  .author {
+    max-width: 100%;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: solid 1px #f1f1f1;
+  }
+}
