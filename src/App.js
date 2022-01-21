@@ -1,17 +1,22 @@
 import "./App.scss";
 import { Author } from "./components/Author";
-import Posts from "./components/Posts";
+import SidePosts from "./components/SidePosts";
 import Drawer from "./components/Drawer";
 import Nav from "./components/Nav";
+import { Routes, Route } from "react-router-dom";
+import MainPost from "./components/MainPost";
 
 function App() {
   return (
     <div className="App">
       <div className="app-flex">
-        <Author />
+        <Routes>
+          <Route path="/" element={<Author />} exact />
+          <Route path="/post" element={<MainPost />} />
+        </Routes>
         <div className="nav-flex">
           <Nav />
-          <Posts />
+          <SidePosts />
         </div>
         <Drawer />
       </div>

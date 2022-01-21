@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap");
+
+.mainpost {
+  border-right: solid 1px #f1f1f1;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  line-height: 26px;
+  text-align: left;
+  .articleHeader {
+    padding: 0 72px;
+    height: 650px;
+    .articleImg {
+      max-width: 100%;
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      top: 0;
+    }
+
+    .articleInfo {
+      font-family: IBM Plex Sans;
+      margin-top: 130px;
+      color: #ececec;
+    }
+    .articleTitle {
+      font-size: 42px;
+      line-height: 52px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    h3 {
+      color: #ececec;
+      font-size: 16px;
+      font-family: Inter;
+      font-weight: normal;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .articleContent {
+    padding: 0 72px;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    p {
+      font-family: Inter;
+      font-size: 16px;
+    }
+    .headings {
+      line-height: 28px;
+      font-weight: 800;
+      h1 {
+        font-size: 36px;
+      }
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 26px;
+      }
+      h4 {
+        font-size: 22px;
+      }
+      h5 {
+        font-size: 18px;
+      }
+    }
+  }
+}

@@ -2,11 +2,14 @@ import React from "react";
 import styles from "./Nav.module.scss";
 import search from "./img/search.svg";
 import user from "./img/user.svg";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
     <nav className={styles.nav}>
-      <div className={styles.navLogo}>EUGENE BLOG</div>
+      <Link to={"/"} style={{ textDecoration: "none" }}>
+        <div className={styles.navLogo}>EUGENE BLOG</div>
+      </Link>
       <div className={styles.navEnd}>
         <div className={styles.search}>
           <img src={search} alt="search" />
