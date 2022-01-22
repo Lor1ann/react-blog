@@ -1,6 +1,7 @@
 import styles from "./Drawer.module.scss";
 import React from "react";
 import menu from "./img/menu.png";
+import { Link } from "react-router-dom";
 
 function Drawer() {
   const [drawer, setDrawer] = React.useState(false);
@@ -30,10 +31,14 @@ function Drawer() {
           <div className={styles.menuOpened}>
             <ul className={styles.menuList}>
               <li className={styles.menuListElem}>
-                <div>Войти</div>
+                <Link to={"/auth"} style={{ textDecoration: "none" }}>
+                  <div>Войти</div>
+                </Link>
               </li>
               <li className={styles.menuListElem}>
-                <div>Зарегестрироватся</div>
+                <Link to={"/reg"} style={{ textDecoration: "none" }}>
+                  <div>Зарегестрироватся</div>
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,10 +1,9 @@
 import "./App.scss";
 import { Author } from "./components/Author";
-import SidePosts from "./components/SidePosts";
-import Drawer from "./components/Drawer";
-import Nav from "./components/Nav";
 import { Routes, Route } from "react-router-dom";
 import MainPost from "./components/MainPost";
+import Auth from "./components/Auth";
+import Reg from "./components/Reg";
 
 function App() {
   return (
@@ -13,12 +12,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Author />} exact />
           <Route path="/post" element={<MainPost />} />
+          <Route exact path="/auth" element={<Auth />} />
+          <Route exact path="/reg" element={<Reg />} />
         </Routes>
-        <div className="nav-flex">
-          <Nav />
-          <SidePosts />
-        </div>
-        <Drawer />
       </div>
     </div>
   );

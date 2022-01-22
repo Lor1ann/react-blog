@@ -14,18 +14,25 @@
     margin-right: 120px;
   }
   .search {
-    margin-right: 27px;
-    img {
+    margin-right: 20px;
+    .searchIcon {
       cursor: pointer;
-      width: 20px;
-      height: auto;
+      font-size: 30px;
+      color: #dedede;
+    }
+    .searchIcon:hover {
+      color: #b4b4b4;
     }
   }
+
   .user {
     cursor: pointer;
-    img {
-      width: 20px;
-      height: auto;
+    .userIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .userIcon:hover {
+      color: #b4b4b4;
     }
   }
 }
