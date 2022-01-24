@@ -1,5 +1,6 @@
 import styles from "./Post.module.scss";
 import React from "react";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 const Post = ({ title, views, text, date, photo }) => {
   return (
@@ -29,7 +30,10 @@ const Post = ({ title, views, text, date, photo }) => {
       <div className={styles.postInfo}>
         <p>{date.toLocaleString()}</p>
         <div className={styles.postViews}>
-          <p>{views}</p>
+          <div>
+            <RemoveRedEyeIcon />
+          </div>
+          <div>{views}</div>
         </div>
       </div>
     </div>

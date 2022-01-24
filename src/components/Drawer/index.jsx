@@ -12,7 +12,7 @@ function Drawer() {
         <div className={styles.wrapper} onClick={() => setDrawer(false)}></div>
       ) : null}
       <div
-        class={styles.drawerOpener}
+        className={styles.drawerOpener}
         onClick={() => {
           setDrawer(true);
         }}

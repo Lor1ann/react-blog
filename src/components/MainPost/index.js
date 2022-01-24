@@ -7,29 +7,26 @@ const MainPost = () => {
     <>
       <div className={styles.mainpost}>
         <div className={styles.articleHeader}>
-          <img
-            className={styles.articleImg}
-            src="https://images.unsplash.com/photo-1607970669494-309137683be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="code"
-          />
-          <div className={styles.articleInfo}>
-            <ul>
-              <li>
-                <p>12 АВГУСТА 2019 В 08:06</p>
-              </li>
-              <li>
-                <img src="" alt="" />
-                <p></p>
-              </li>
-            </ul>
+          <div className={styles.article}>
+            <div className={styles.articleInfo}>
+              <ul>
+                <li>
+                  <p>12 АВГУСТА 2019 В 08:06</p>
+                </li>
+                <li>
+                  <img src="" alt="" />
+                  <p></p>
+                </li>
+              </ul>
+            </div>
+            <h2 className={styles.articleTitle}>
+              Какой-то очень интересный заголовок
+            </h2>
+            <h3>
+              Я часто замечаю, что начинающие фронтенд-разработчики по несколько
+              раз то начинают, то забрасывают изучение технологий.
+            </h3>
           </div>
-          <h2 className={styles.articleTitle}>
-            Какой-то очень интересный заголовок
-          </h2>
-          <h3>
-            Я часто замечаю, что начинающие фронтенд-разработчики по несколько
-            раз то начинают, то забрасывают изучение технологий.
-          </h3>
         </div>
         <div className={styles.articleContent}>
           <div>

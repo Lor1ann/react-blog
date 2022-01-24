@@ -1,13 +1,14 @@
 .posts {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  width: 100%;
+  align-items: center;
+  margin-right: 120px;
 }
 
 @media (max-width: 1320px) {
   .posts {
     max-width: 100%;
+    margin: 40px 0 0 0;
     align-items: center;
   }
 }

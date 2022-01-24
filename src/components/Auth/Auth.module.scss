@@ -37,26 +37,28 @@
 
     .email {
       margin-bottom: 20px;
+      .emailField {
+        width: 100%;
+      }
     }
     .password {
       margin-bottom: 35px;
+      .passwordField {
+        width: 100%;
+        border-color: orange;
+      }
     }
-
+    .name {
+      margin-bottom: 20px;
+      .nameField {
+        width: 100%;
+      }
+    }
     p {
       margin: 0;
       line-height: 13px;
       font-weight: 600;
       margin-bottom: 8px;
-    }
-    input {
-      border: 1px solid #eeeeee;
-      border-radius: 12px;
-      padding-left: 15px;
-      margin: 0;
-      box-sizing: border-box;
-      height: 48px;
-      width: 100%;
-      outline: none;
     }
 
     button {

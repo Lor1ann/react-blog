@@ -1,39 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap");
 
 .mainpost {
+  margin: 0;
+  padding: 0;
   border-right: solid 1px #f1f1f1;
-  max-width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   width: 100%;
-  line-height: 26px;
   text-align: left;
   .articleHeader {
-    padding: 0 72px;
+    width: 100%;
     height: 650px;
-    .articleImg {
-      max-width: 100%;
-      position: absolute;
-      z-index: -1;
-      left: 0;
-      top: 0;
-    }
+    background: url("https://images.unsplash.com/photo-1607970669494-309137683be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
+      no-repeat;
+    background-size: cover;
 
     .articleInfo {
+      padding: 0 72px;
       font-family: IBM Plex Sans;
       margin-top: 100px;
       color: #ececec;
     }
     .articleTitle {
+      padding: 0 72px;
       font-size: 42px;
-      line-height: 52px;
       font-weight: 800;
       color: #fff;
     }
 
     h3 {
+      padding: 0 72px;
       color: #ececec;
       font-size: 16px;
       font-family: Inter;
@@ -52,8 +49,10 @@
     flex-direction: column;
     max-width: 600px;
     p {
+      margin-top: 37px;
       font-family: Inter;
       font-size: 16px;
+      line-height: 26px;
     }
     .headings {
       line-height: 28px;
@@ -79,14 +78,16 @@
 
 @media (max-width: 1320px) {
   .mainpost {
-    max-width: 100%;
-    align-items: center;
-    margin: 0;
-    padding: 20px 30px;
     border-bottom: solid 1px #f1f1f1;
+
+    .article {
+      max-width: 900px;
+    }
     .articleHeader {
-      height: 800px;
-      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
     }
   }
 }
