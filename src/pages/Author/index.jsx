@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./Author.module.scss";
 import authorImage from "./img/author.png";
-import Layout from "../Layout";
+import Layout from "../../components/Layout";
 
 export const Author = (props) => {
   return (
-    <>
+    <div className={style.authorFlex}>
       <div className={style.author}>
         <h1 className={style.title}>Eugene Pechkurov</h1>
         <h2 className={style.subtitle}>Блог фронтенд-разработчика</h2>
@@ -25,6 +25,6 @@ export const Author = (props) => {
         </div>
       </div>
       <Layout />
-    </>
+    </div>
   );
 };

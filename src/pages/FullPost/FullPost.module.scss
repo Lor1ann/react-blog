@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap");
 
+.mainFlex {
+  display: flex;
+}
+
 .mainpost {
   margin: 0;
   padding: 0;
@@ -12,8 +16,7 @@
   .articleHeader {
     width: 100%;
     height: 650px;
-    background: url("https://images.unsplash.com/photo-1607970669494-309137683be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
-      no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
 
     .articleInfo {
@@ -77,6 +80,10 @@
 }
 
 @media (max-width: 1320px) {
+  .mainFlex {
+    flex-direction: column;
+  }
+
   .mainpost {
     border-bottom: solid 1px #f1f1f1;
 

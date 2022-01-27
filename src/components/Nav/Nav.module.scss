@@ -13,8 +13,14 @@
     margin-right: 120px;
     align-items: center;
   }
+
+  .searchInput {
+    margin-right: 15px;
+  }
+
   .search {
-    margin-right: 20px;
+    position: relative;
+    margin-right: 10px;
     .searchIcon {
       cursor: pointer;
       font-size: 30px;
@@ -26,6 +32,7 @@
   }
 
   .user {
+    position: relative;
     cursor: pointer;
     .userIcon {
       font-size: 30px;
@@ -34,6 +41,80 @@
     .userIcon:hover {
       color: #b4b4b4;
     }
+  }
+  .logout {
+    position: relative;
+    cursor: pointer;
+    .logoutIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .logoutIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+  .add {
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    .addIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .addIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+  .add:hover::after {
+    content: "Написать";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .user:hover::after {
+    content: "Войти";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .search:hover::after {
+    content: "Поиск";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .logout:hover::after {
+    content: "Выйти";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
   }
 }
 

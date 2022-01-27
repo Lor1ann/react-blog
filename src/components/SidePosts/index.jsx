@@ -30,9 +30,7 @@ const posts = [
 ];
 
 const SidePosts = () => {
-  const searchValue = useSelector((state) =>
-    state.map((obj) => obj.searchValue)
-  );
+  const searchValue = useSelector((state) => state.search.searchValue);
 
   return (
     <div className={style.posts}>
@@ -40,7 +38,7 @@ const SidePosts = () => {
         .filter((elem) =>
           elem.title
             .toLocaleLowerCase()
-            .includes(searchValue[0].toLocaleLowerCase())
+            .includes(searchValue.toLocaleLowerCase())
         )
         .map((obj) => {
           return (

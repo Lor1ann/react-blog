@@ -1,21 +1,23 @@
 import React from "react";
-import styles from "./MainPost.module.scss";
-import Layout from "../Layout";
+import styles from "./FullPost.module.scss";
+import Layout from "../../components/Layout";
 
-const MainPost = () => {
+const FullPost = () => {
   return (
-    <>
+    <div className={styles.mainFlex}>
       <div className={styles.mainpost}>
-        <div className={styles.articleHeader}>
+        <div
+          className={styles.articleHeader}
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1607970669494-309137683be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)",
+          }}
+        >
           <div className={styles.article}>
             <div className={styles.articleInfo}>
               <ul>
                 <li>
                   <p>12 АВГУСТА 2019 В 08:06</p>
-                </li>
-                <li>
-                  <img src="" alt="" />
-                  <p></p>
                 </li>
               </ul>
             </div>
@@ -51,8 +53,8 @@ const MainPost = () => {
         </div>
       </div>
       <Layout />
-    </>
+    </div>
   );
 };
 
-export default MainPost;
+export default FullPost;

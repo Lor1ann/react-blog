@@ -1,15 +1,22 @@
 import React from "react";
-import styles from "./Reg.module.scss";
-import { Link } from "react-router-dom";
+import styles from "./Auth.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
-import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SET_USER_DATA } from "../../redux/actions/user";
 
-const Reg = () => {
-  let nav = useNavigate();
+const Auth = () => {
+  const dispatch = useDispatch();
 
+  function setUsersData(data) {
+    dispatch(SET_USER_DATA(data));
+  }
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -18,14 +25,14 @@ const Reg = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     axios
-      .post("http://localhost:5656/auth/register", data)
-      .then((response) => {
-        console.log(response);
-      })
-      .then(() => {
-        nav("/");
+      .post("http://localhost:5656/auth/login", data)
+      .then(({ data }) => {
+        setUsersData(data);
+        if (data.hasOwnProperty("token")) {
+          localStorage.setItem("token", JSON.stringify(data.token));
+        }
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -37,7 +44,7 @@ const Reg = () => {
     <div className={styles.root}>
       <div className={styles.wrapper}>
         <div className={styles.login}>
-          <h2 className={styles.loginTitle}>Регистрация</h2>
+          <h2 className={styles.loginTitle}>Вход в аккаунт</h2>
           <Link
             to={"/"}
             className={styles.link}
@@ -47,23 +54,6 @@ const Reg = () => {
           </Link>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.name}>
-            <TextField
-              className={styles.nameField}
-              label="Имя и фамилия"
-              variant="standard"
-              error={!!errors.fullName}
-              {...register("fullName", {
-                pattern: {
-                  value:
-                    /(-?([A-Z].\s)?([A-Z][a-z]+)\s?)+([A-Z]'([A-Z][a-z]+))?/g,
-                  message: "Это неверные имя и фамилия!",
-                },
-              })}
-              helperText={errors.fullName && errors.fullName.message}
-              required
-            />
-          </div>
           <div className={styles.email}>
             <TextField
               className={styles.emailField}
@@ -107,4 +97,4 @@ const Reg = () => {
   );
 };
 
-export default Reg;
+export default Auth;

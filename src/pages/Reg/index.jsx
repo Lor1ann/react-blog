@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./Auth.module.scss";
-import CloseIcon from "@mui/icons-material/Close";
+import styles from "./Reg.module.scss";
 import { Link } from "react-router-dom";
-import TextField from "@mui/material/TextField";
+import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "react-hook-form";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Auth = () => {
-  const navigate = useNavigate();
+const Reg = () => {
+  let nav = useNavigate();
 
   const {
     register,
@@ -19,10 +19,12 @@ const Auth = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5656/auth/login", data)
+      .post("http://localhost:5656/auth/register", data)
       .then((response) => {
         console.log(response);
-        navigate("/");
+      })
+      .then(() => {
+        nav("/");
       })
       .catch((error) => {
         console.log(error);
@@ -34,7 +36,7 @@ const Auth = () => {
     <div className={styles.root}>
       <div className={styles.wrapper}>
         <div className={styles.login}>
-          <h2 className={styles.loginTitle}>Вход в аккаунт</h2>
+          <h2 className={styles.loginTitle}>Регистрация</h2>
           <Link
             to={"/"}
             className={styles.link}
@@ -44,6 +46,23 @@ const Auth = () => {
           </Link>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.name}>
+            <TextField
+              className={styles.nameField}
+              label="Имя и фамилия"
+              variant="standard"
+              error={!!errors.fullName}
+              {...register("fullName", {
+                pattern: {
+                  value:
+                    /(-?([A-Z].\s)?([A-Z][a-z]+)\s?)+([A-Z]'([A-Z][a-z]+))?/g,
+                  message: "Это неверные имя и фамилия!",
+                },
+              })}
+              helperText={errors.fullName && errors.fullName.message}
+              required
+            />
+          </div>
           <div className={styles.email}>
             <TextField
               className={styles.emailField}
@@ -87,4 +106,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Reg;
