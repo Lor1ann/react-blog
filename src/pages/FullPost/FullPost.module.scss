@@ -1,7 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap");
 
+@keyframes appearance {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .mainFlex {
   display: flex;
+  animation: appearance 1.3s;
 }
 
 .mainpost {
@@ -13,11 +23,15 @@
   align-items: center;
   width: 100%;
   text-align: left;
+
   .articleHeader {
     width: 100%;
     height: 650px;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+    background: linear-gradient(rgba(29, 29, 29, 0.6), rgba(29, 29, 29, 0.6)),
+      url("https://images.unsplash.com/photo-1607970669494-309137683be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
 
     .articleInfo {
       padding: 0 72px;

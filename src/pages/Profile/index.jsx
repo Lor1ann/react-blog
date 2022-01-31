@@ -21,7 +21,12 @@ const Profile = () => {
         <div className={styles.profileTitle}>{user.fullName}</div>
         <div className={styles.regDate}>
           <p>
-            Дата регистрации: <span>12 августа 2019 в 08:06</span>
+            Дата регистрации:{" "}
+            {new Date(user.createdAt).toLocaleDateString("ru-RU", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </p>
         </div>
         <div className={styles.filter}>
@@ -41,7 +46,10 @@ const Profile = () => {
             onClick={() => setActive({ posts: false, comms: true })}
             style={
               active.comms
-                ? { color: "#36B55A", background: "rgba(64, 210, 105, 0.08)" }
+                ? {
+                    color: "#36B55A",
+                    background: "rgba(64, 210, 105, 0.08) ",
+                  }
                 : null
             }
           >

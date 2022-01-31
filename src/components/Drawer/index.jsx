@@ -58,6 +58,16 @@ const Drawer = function Drawer() {
           <div className={styles.menuOpened}>
             <div className={styles.user}>
               <h3>{user.fullName}</h3>
+              <p>
+                Дата регистрации:{" "}
+                <span>
+                  {new Date(user.createdAt).toLocaleDateString("ru-RU", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </p>
             </div>
             <ul className={styles.menuList}>
               <li className={styles.menuListElem}>
@@ -65,18 +75,14 @@ const Drawer = function Drawer() {
                   <div>Мой профиль</div>
                 </Link>
               </li>
-              <ul className={styles.menuList}>
-                <li className={styles.menuListElem}>
-                  <Link to={"/post"} style={{ textDecoration: "none" }}>
-                    <div>Создать запись</div>
-                  </Link>
-                </li>
-                <ul className={styles.menuList}>
-                  <li className={styles.menuListElem}>
-                    <div onClick={onLogout}>Выйти</div>
-                  </li>
-                </ul>
-              </ul>
+              <li className={styles.menuListElem}>
+                <Link to={"/post"} style={{ textDecoration: "none" }}>
+                  <div>Создать запись</div>
+                </Link>
+              </li>
+              <li className={styles.menuListElem}>
+                <div onClick={onLogout}>Выйти</div>
+              </li>
             </ul>
           </div>
         )}

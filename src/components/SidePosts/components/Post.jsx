@@ -28,7 +28,7 @@ const Post = ({ title, views, text, date, photo }) => {
         ) : null}
       </div>
       <div className={styles.postInfo}>
-        <p>{date.toLocaleString()}</p>
+        <p>{}</p>
         <div className={styles.postViews}>
           <div>
             <RemoveRedEyeIcon />

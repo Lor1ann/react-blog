@@ -15,6 +15,7 @@
   }
 
   .searchInput {
+    animation: appearance 0.5s;
     margin-right: 15px;
   }
 
@@ -28,6 +29,15 @@
     }
     .searchIcon:hover {
       color: #b4b4b4;
+    }
+  }
+
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 
@@ -70,6 +80,7 @@
     opacity: 0.9;
     position: absolute;
     top: 100%;
+    animation: appearance 0.4s;
     right: -80%;
     padding: 6px 10px;
     background-color: #2d2d2d;
@@ -85,6 +96,7 @@
     top: 100%;
     right: -80%;
     padding: 6px 10px;
+    animation: appearance 0.4s;
     background-color: #2d2d2d;
     border-radius: 10px;
     font-size: 14px;
@@ -97,6 +109,7 @@
     position: absolute;
     top: 100%;
     right: -80%;
+    animation: appearance 0.4s;
     padding: 6px 10px;
     background-color: #2d2d2d;
     border-radius: 10px;
@@ -108,6 +121,7 @@
     content: "Выйти";
     opacity: 0.9;
     position: absolute;
+    animation: appearance 0.4s;
     top: 100%;
     right: -80%;
     padding: 6px 10px;

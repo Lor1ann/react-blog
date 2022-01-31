@@ -33,6 +33,16 @@
       }
     }
   }
+
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   .filter {
     margin-top: 35px;
     display: flex;
@@ -48,5 +58,8 @@
       border-radius: 4px;
       cursor: pointer;
     }
+  }
+  .posts {
+    animation: appearance 1s;
   }
 }

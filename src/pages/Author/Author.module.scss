@@ -1,5 +1,6 @@
 .authorFlex {
   display: flex;
+  animation: appearance 1.5s;
 }
 
 .author {
@@ -46,6 +47,15 @@
       font-size: 16px;
       line-height: 28px;
     }
+  }
+}
+
+@keyframes appearance {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
   }
 }
 

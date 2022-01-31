@@ -33,6 +33,7 @@ const Auth = () => {
           localStorage.setItem("token", JSON.stringify(data.token));
         }
         navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
