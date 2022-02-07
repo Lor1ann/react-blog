@@ -48,46 +48,59 @@
       height: 100px;
     }
   }
+
   .loader {
     display: flex;
-    width: 100%;
-    .loaderText {
-      max-width: 650px;
-      width: 100%;
-      margin-right: 50px;
-      textarea {
-        height: 25px;
-      }
-    }
-    button {
-      cursor: pointer;
-      display: flex;
-      width: 150px;
-      height: 50px;
-      align-items: center;
-      align-self: flex-end;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 3px;
-      outline: none;
-      color: #fff;
-      background-color: #6fcf97;
-      border: none;
-      .downloadIcon {
-        color: inherit;
-        margin-right: 5px;
-      }
-      p {
-        color: inherit;
-        font-size: 16px;
-        font-weight: 600;
-      }
-    }
+    align-items: center;
+    justify-content: space-around;
+  }
 
-    button:hover {
-      color: rgb(241, 241, 241);
-      background-color: #6cc792;
+  .loaderText {
+    display: flex;
+    align-items: center;
+
+    textarea {
+      height: 30px;
+      width: 400px;
+      margin-right: 20px;
     }
+  }
+
+  .upload {
+    cursor: pointer;
+    display: flex;
+    margin-right: 20px;
+    white-space: nowrap;
+    max-width: 800px;
+    height: 50px;
+    align-items: center;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 3px;
+    outline: none;
+    color: #fff;
+    background-color: #6fcf97;
+    border: none;
+    min-width: 120px;
+
+    p {
+      color: inherit;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .upload:active {
+    background-color: #4f926b;
+  }
+
+  .upload:hover {
+    background-color: #4f926b;
+  }
+
+  button:hover {
+    color: rgb(241, 241, 241);
+    background-color: #6cc792;
   }
 
   .toPost {
@@ -98,6 +111,19 @@
     button {
       background-color: #ffdf36;
       color: #68572d;
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .createFlex {
+    flex-direction: column;
+    .create {
+      margin: 0 auto;
+      padding: 40px 30px;
+      form {
+        max-width: 100%;
+      }
     }
   }
 }

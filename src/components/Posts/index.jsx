@@ -17,18 +17,10 @@ const Post = ({ title, views, text, date, photo }) => {
             <p className={styles.postText}>{text}</p>
           </div>
         )}
-        {photo ? (
-          <img
-            className={styles.postPhoto}
-            src={photo}
-            alt=""
-            width="165px"
-            height="165px"
-          />
-        ) : null}
+        {photo ? <img className={styles.postPhoto} src={photo} alt="" /> : null}
       </div>
       <div className={styles.postInfo}>
-        <p>{}</p>
+        <p>{date.toLocaleDateString("ru-RU")}</p>
         <div className={styles.postViews}>
           <div>
             <RemoveRedEyeIcon />

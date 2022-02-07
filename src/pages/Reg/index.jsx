@@ -20,12 +20,14 @@ const Reg = () => {
   const onSubmit = (data) => {
     axios
       .post("http://localhost:5656/auth/register", data)
-      .then((response) => {
-        console.log(response);
-      })
-      .then(() => {
+      .then(({ data }) => {
+        if (data.hasOwnProperty("token")) {
+          localStorage.setItem("token", JSON.stringify(data.token));
+        }
         nav("/");
+        window.location.reload();
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -54,8 +56,7 @@ const Reg = () => {
               error={!!errors.fullName}
               {...register("fullName", {
                 pattern: {
-                  value:
-                    /(-?([A-Z].\s)?([A-Z][a-z]+)\s?)+([A-Z]'([A-Z][a-z]+))?/g,
+                  value: /^[A-ЯЁ][а-яё]+\s[A-ЯЁ][а-яё]+$/g,
                   message: "Это неверные имя и фамилия!",
                 },
               })}

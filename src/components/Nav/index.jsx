@@ -13,8 +13,8 @@ import { USER_LOGOUT } from "../../redux/actions/user";
 const Nav = () => {
   const [search, setSearch] = React.useState(false);
   const dispatch = useDispatch();
+  const token = JSON.parse(localStorage.getItem("token"));
   const state = useSelector((state) => state.search.searchValue);
-  const user = useSelector((state) => state.user);
   function searchValues(value) {
     dispatch(TO_SEARCH(value));
   }
@@ -47,7 +47,7 @@ const Nav = () => {
             onClick={() => setSearch(!search)}
           />
         </div>
-        {user.fullName ? (
+        {token ? (
           <>
             <div className={styles.add}>
               <Link to={"/create"} style={{ textDecoration: "none" }}>

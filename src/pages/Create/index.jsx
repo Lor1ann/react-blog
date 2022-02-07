@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import styles from "./Create.module.scss";
-import DownloadIcon from "@mui/icons-material/Download";
 import "easymde/dist/easymde.min.css";
 import Button from "@mui/material/Button";
 import SimpleMdeReact from "react-simplemde-editor";
@@ -10,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const navigate = useNavigate();
+
   const autofocusNoSpellcheckerOptions = React.useMemo(() => {
     return {
       autofocus: true,
@@ -23,15 +22,47 @@ const Create = () => {
     };
   }, []);
 
+  const [filename, setFilename] = React.useState("");
+  const [upload, setUpload] = React.useState(true);
   const [fields, setFields] = React.useState({
     description: "",
     title: "",
     text: "",
   });
+  const navigate = useNavigate();
+  console.log(fields);
+  function onSelect(e) {
+    setUpload(false);
+    setFilename(
+      e.target.value.split(`\\`)[e.target.value.split(`\\`).length - 1]
+    );
+  }
 
-  function onSubmit(e) {
+  const inputFile = React.useRef();
+
+  async function fileUpload() {
+    const file = inputFile.current.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    setUpload(true);
+    setFilename(file.name);
+    await axios
+      .post("http://localhost:5656/posts/upload", formData, {
+        header: { "Content-type": "multipart/form-data" },
+      })
+      .then((res) =>
+        setFields({
+          ...fields,
+          photoUrl: `http://localhost:5656${res.data.url}`,
+        })
+      )
+      .catch((err) => console.error(err));
+  }
+
+  async function onSubmit(e) {
     e.preventDefault();
-    axios
+
+    await axios
       .post("http://localhost:5656/posts", fields, {
         headers: {
           Authorization: token,
@@ -40,7 +71,6 @@ const Create = () => {
       .then(() => navigate("/"))
       .then(() => window.location.reload())
       .catch((err) => console.log(err));
-
     setFields({
       description: "",
       title: "",
@@ -63,16 +93,44 @@ const Create = () => {
             <p>Короткое описание</p>
             <textarea
               form="create"
-              value={fields.text}
-              onChange={(e) => setFields({ ...fields, text: e.target.value })}
+              value={fields.description}
+              onChange={(e) =>
+                setFields({ ...fields, description: e.target.value })
+              }
             />
           </div>
           <div className={styles.loader}>
             <div className={styles.loaderText}>
-              <p>Ссылка на изображение:</p>
-              <textarea />
+              <textarea value={filename} />
+              <label htmlFor="inputFile">
+                <input
+                  id="inputFile"
+                  style={{ display: "none" }}
+                  multiple
+                  type="file"
+                  ref={inputFile}
+                  onChange={onSelect}
+                />
+
+                <Button
+                  className={styles.upload}
+                  type="button"
+                  variant="contained"
+                  component="span"
+                >
+                  Выберите файл
+                </Button>
+              </label>
             </div>
-            <Button variant="contained" endIcon={<DownloadIcon />}>
+
+            <Button
+              className={styles.upload}
+              type="button"
+              variant="contained"
+              component="span"
+              onClick={fileUpload}
+              disabled={upload}
+            >
               Загрузить
             </Button>
           </div>
@@ -80,8 +138,8 @@ const Create = () => {
             <p>Полное описание</p>
             <SimpleMdeReact
               options={autofocusNoSpellcheckerOptions}
-              value={fields.description}
-              onChange={(value) => setFields({ ...fields, description: value })}
+              value={fields.text}
+              onChange={(val) => setFields({ ...fields, text: val })}
             />
           </div>
           <div className={styles.toPost}>

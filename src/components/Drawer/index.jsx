@@ -9,7 +9,7 @@ const Drawer = function Drawer() {
   const dispatch = useDispatch();
   const [drawer, setDrawer] = React.useState(false);
   const user = useSelector((state) => state.user);
-
+  const token = JSON.parse(localStorage.getItem("token"));
   function onLogout() {
     if (window.confirm("Вы точно хотите выйти?")) {
       dispatch(USER_LOGOUT());
@@ -39,7 +39,7 @@ const Drawer = function Drawer() {
             <p className={styles.menuText}>МЕНЮ</p>
             <img className={styles.menuImg} src={menu} alt="" />
           </div>
-        ) : !user.fullName ? (
+        ) : !token ? (
           <div className={styles.menuOpened}>
             <ul className={styles.menuList}>
               <li className={styles.menuListElem}>
@@ -71,12 +71,12 @@ const Drawer = function Drawer() {
             </div>
             <ul className={styles.menuList}>
               <li className={styles.menuListElem}>
-                <Link to={"/Profile"} style={{ textDecoration: "none" }}>
+                <Link to={"/profile"} style={{ textDecoration: "none" }}>
                   <div>Мой профиль</div>
                 </Link>
               </li>
               <li className={styles.menuListElem}>
-                <Link to={"/post"} style={{ textDecoration: "none" }}>
+                <Link to={"/create"} style={{ textDecoration: "none" }}>
                   <div>Создать запись</div>
                 </Link>
               </li>

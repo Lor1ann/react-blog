@@ -1,0 +1,21 @@
+.comm {
+  width: 700px;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  .commInfo {
+    display: flex;
+    justify-content: space-between;
+    .commCreatedAt {
+      color: #c1c1c1;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .commUser {
+      color: #373737;
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
+}

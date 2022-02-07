@@ -1,0 +1,28 @@
+.warning {
+  font-family: Inter;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .warningTitle {
+    font-size: 52px;
+    font-weight: 800;
+    color: #0058d9;
+    margin-top: 130px;
+  }
+  .navLogo {
+    color: #0a3465;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+    align-self: start;
+  }
+  h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #0058d9;
+  }
+}
