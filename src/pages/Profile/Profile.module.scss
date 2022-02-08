@@ -63,3 +63,29 @@
     animation: appearance 1s;
   }
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0 100px 0;
+  button {
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  button:hover {
+    background-color: #e0e0e0;
+  }
+
+  p {
+    color: #aeb3b7;
+    font-weight: 500;
+  }
+
+  button:first-child {
+    margin-right: 10px;
+  }
+}

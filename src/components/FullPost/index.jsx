@@ -7,6 +7,7 @@ import axios from "axios";
 
 const FullPost = () => {
   const [comms, setComms] = React.useState(null);
+  const [post, setPost] = React.useState(null);
 
   React.useEffect(() => {
     getComms();
@@ -20,11 +21,12 @@ const FullPost = () => {
       window.location.pathname.split("/").length - 1
     ];
 
-  const post = useSelector((state) =>
-    state.posts.posts
-      ? state.posts.posts.filter((obj) => obj._id === id)[0]
-      : null
-  );
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:5656/posts/${id}`)
+      .then(({ data }) => setPost(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   function getComms() {
     axios

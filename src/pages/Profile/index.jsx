@@ -5,31 +5,62 @@ import { useSelector } from "react-redux";
 import Post from "../../components/Posts";
 import axios from "axios";
 import Comm from "../../components/Comm";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const Profile = () => {
   const [comms, setComms] = React.useState(null);
+  const [posts, setPosts] = React.useState(null);
   const user = useSelector((state) => state.user);
   const [active, setActive] = React.useState({ posts: true, comms: false });
-  const posts = useSelector((state) => state.posts.posts);
+  const [commsPage, setCommsPage] = React.useState(1);
+  const [postsPage, setPostsPage] = React.useState(1);
+  const [totalCommsPages, setTotalCommsPages] = React.useState(0);
+  const [totalPostPages, setTotalPostPages] = React.useState(0);
 
   async function getComms() {
     try {
       const data = await (
-        await axios.get(`http://localhost:5656/comments/`)
+        await axios.get(
+          `http://localhost:5656/comments?limit=5&page=${commsPage}`
+        )
       ).data;
       const dataComms = await data.items;
+      const total = data.items.filter(
+        (obj) => obj.user._id === user._id
+      ).length;
+      setTotalCommsPages(Math.ceil(total / 5) + 1);
 
-      setComms(dataComms);
+      setComms(dataComms.filter((obj) => obj.user._id === user._id));
     } catch (e) {
       console.error(e);
     }
   }
 
-  console.log(comms);
+  async function getPosts() {
+    try {
+      const data = await (
+        await axios.get(`http://localhost:5656/posts?limit=5&page=${postsPage}`)
+      ).data;
+
+      const dataPosts = await data.items;
+      const total = data.items.filter(
+        (obj) => obj.user._id === user._id
+      ).length;
+      setTotalPostPages(Math.ceil(total / 5) + 1);
+      setPosts(dataPosts.filter((obj) => obj.user._id === user._id));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  React.useEffect(() => {
+    getPosts();
+  }, [postsPage]);
 
   React.useEffect(() => {
     getComms();
-  }, []);
+  }, [commsPage]);
 
   return (
     <div className={styles.root}>
@@ -85,52 +116,98 @@ const Profile = () => {
           </div>
           {active.posts && (
             <div className={styles.posts}>
-              {posts
-                .filter((obj) => obj.user._id === user._id)
-                .map((obj) => {
-                  return (
-                    <Link
-                      key={obj._id}
-                      to={`/post/${obj._id}`}
-                      style={{ textDecoration: "none" }}
+              {posts.map((obj) => {
+                return (
+                  <Link
+                    key={obj._id}
+                    to={`/post/${obj._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Post
+                      title={obj.title}
+                      date={new Date(obj.createdAt)}
+                      text={obj.description}
+                      photo={obj.photoUrl}
+                      views={obj.views}
+                    />
+                  </Link>
+                );
+              })}
+              {posts.length !== 0 && (
+                <div className={styles.pagination}>
+                  <div className={styles.buttons}>
+                    <button
+                      disabled={postsPage === 1}
+                      type="button"
+                      onClick={() => {
+                        setPostsPage((prev) => prev - 1);
+                      }}
                     >
-                      <Post
-                        title={obj.title}
-                        date={new Date(obj.createdAt)}
-                        text={obj.description}
-                        photo={obj.photoUrl}
-                        views={obj.views}
-                      />
-                    </Link>
-                  );
-                })}
+                      <ArrowBackIcon />
+                    </button>
+                    <button
+                      disabled={postsPage === totalPostPages}
+                      type="button"
+                      onClick={() => {
+                        setPostsPage((prev) => prev + 1);
+                      }}
+                    >
+                      <ArrowForwardIcon />
+                    </button>
+                  </div>
+                  <p>{`Cтраница ${postsPage} из ${totalPostPages}`}</p>
+                </div>
+              )}
             </div>
           )}
 
           {active.comms && (
             <div className={styles.comments}>
-              {comms
-                .filter((obj) => obj.user._id === user._id)
-                .map((obj) => {
-                  console.log(obj);
-                  return (
-                    <Comm
-                      key={obj._id}
-                      text={obj.text}
-                      username={obj.user.fullName}
-                      createdAt={new Date(obj.createdAt).toLocaleDateString(
-                        "ru-RU",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                          hour: "numeric",
-                          minute: "numeric",
-                        }
-                      )}
-                    />
-                  );
-                })}
+              {comms.map((obj) => {
+                return (
+                  <Comm
+                    key={obj._id}
+                    text={obj.text}
+                    username={obj.user.fullName}
+                    createdAt={new Date(obj.createdAt).toLocaleDateString(
+                      "ru-RU",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                      }
+                    )}
+                  />
+                );
+              })}
+
+              {comms.length !== 0 && (
+                <div className={styles.pagination}>
+                  <div className={styles.buttons}>
+                    <button
+                      disabled={commsPage === 1}
+                      type="button"
+                      onClick={() => {
+                        setCommsPage((prev) => prev - 1);
+                      }}
+                    >
+                      <ArrowBackIcon />
+                    </button>
+                    <button
+                      disabled={commsPage === totalCommsPages}
+                      type="button"
+                      onClick={() => {
+                        setCommsPage((prev) => prev + 1);
+                      }}
+                    >
+                      <ArrowForwardIcon />
+                    </button>
+                  </div>
+                  <p>{`Cтраница ${commsPage} из ${totalCommsPages}`}</p>
+                </div>
+              )}
             </div>
           )}
         </div>

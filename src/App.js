@@ -9,7 +9,6 @@ import Profile from "./pages/Profile";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { SET_USER_DATA } from "./redux/actions/user";
-import { GET_POSTS } from "./redux/actions/posts";
 import Create from "./pages/Create";
 import NonAuth from "./pages/NonAuth";
 import Err404 from "./pages/404";
@@ -17,25 +16,11 @@ import Err404 from "./pages/404";
 function App() {
   const [token, setToken] = React.useState(null);
   const dispatch = useDispatch();
-  function getPosts(data) {
-    dispatch(GET_POSTS(data));
-  }
+
   const location = useLocation();
   function setUsersData(data) {
     dispatch(SET_USER_DATA(data));
   }
-
-  React.useEffect(() => {
-    axios
-      .get("http://localhost:5656/posts")
-      .then(({ data }) => {
-        getPosts(data.items);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   React.useEffect(() => {
     setToken(JSON.parse(localStorage.getItem("token")));

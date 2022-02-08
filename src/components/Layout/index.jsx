@@ -14,20 +14,22 @@ const Layout = () => {
   const searchValue = useSelector((state) => state.search.searchValue);
   const [postsPage, setPostsPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(0);
-  console.log(totalPages);
+  const limit = 5;
   React.useEffect(() => {
     axios
       .get(`http://localhost:5656/posts`)
-      .then(({ data }) => setTotalPages(Math.ceil(data.total / 5)))
+      .then(({ data }) => setTotalPages(Math.ceil(data.total / limit)))
       .catch((err) => console.log(err));
   }, []);
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:5656/posts?limit=5&page=${postsPage}`)
+      .get(
+        `http://localhost:5656/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`
+      )
       .then(({ data }) => setPosts(data.items))
       .catch((err) => console.log(err));
-  }, [postsPage]);
+  }, [postsPage, searchValue]);
 
   return (
     <>
