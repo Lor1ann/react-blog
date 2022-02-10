@@ -18,6 +18,8 @@ const Profile = () => {
   const [totalCommsPages, setTotalCommsPages] = React.useState(0);
   const [totalPostPages, setTotalPostPages] = React.useState(0);
 
+  console.log(posts);
+
   async function getComms() {
     try {
       const data = await (
@@ -26,10 +28,8 @@ const Profile = () => {
         )
       ).data;
       const dataComms = await data.items;
-      const total = data.items.filter(
-        (obj) => obj.user._id === user._id
-      ).length;
-      setTotalCommsPages(Math.ceil(total / 5) + 1);
+      console.log(dataComms);
+      setTotalCommsPages(Math.ceil(data.total / 5));
 
       setComms(dataComms.filter((obj) => obj.user._id === user._id));
     } catch (e) {
@@ -44,10 +44,8 @@ const Profile = () => {
       ).data;
 
       const dataPosts = await data.items;
-      const total = data.items.filter(
-        (obj) => obj.user._id === user._id
-      ).length;
-      setTotalPostPages(Math.ceil(total / 5) + 1);
+
+      setTotalPostPages(Math.ceil(dataPosts.length / 5));
       setPosts(dataPosts.filter((obj) => obj.user._id === user._id));
     } catch (e) {
       console.error(e);
