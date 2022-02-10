@@ -17,7 +17,9 @@ const Post = ({ title, views, text, date, photo }) => {
             <p className={styles.postText}>{text}</p>
           </div>
         )}
-        {photo ? <img className={styles.postPhoto} src={photo} alt="" /> : null}
+        {photo ? (
+          <img className={styles.postPhoto} src={`/${photo}`} alt="" />
+        ) : null}
       </div>
       <div className={styles.postInfo}>
         <p>{date.toLocaleDateString("ru-RU")}</p>
