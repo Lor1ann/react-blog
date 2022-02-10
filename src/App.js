@@ -29,7 +29,7 @@ function App() {
 
   React.useEffect(() => {
     instance
-      .get("http://localhost:5656/auth/me", {
+      .get("/auth/me", {
         headers: {
           Authorization: token,
         },
