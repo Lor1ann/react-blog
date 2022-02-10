@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
-const { initRoutes } = require("./routes");
+const { initRoutes } = require("./blog-api/routes");
 const morgan = require("morgan");
 
 require("dotenv").config();
