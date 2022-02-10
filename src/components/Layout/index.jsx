@@ -43,7 +43,7 @@ const Layout = () => {
                 return (
                   <Link
                     key={obj._id}
-                    to={`/post/${obj._id}`}
+                    to={`/posts/${obj._id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <Post
