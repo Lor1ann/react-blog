@@ -17,16 +17,14 @@ const Layout = () => {
   const limit = 5;
   React.useEffect(() => {
     instance
-      .get(`http://localhost:5656/posts`)
+      .get(`/posts`)
       .then(({ data }) => setTotalPages(Math.ceil(data.total / limit)))
       .catch((err) => console.log(err));
   }, []);
 
   React.useEffect(() => {
     instance
-      .get(
-        `http://localhost:5656/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`
-      )
+      .get(`/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`)
       .then(({ data }) => setPosts(data.items))
       .catch((err) => console.log(err));
   }, [postsPage, searchValue]);

@@ -23,7 +23,7 @@ const FullPost = () => {
 
   React.useEffect(() => {
     instance
-      .get(`http://localhost:5656/posts/${id}`)
+      .get(`/posts/${id}`)
       .then(({ data }) => setPost(data))
       .catch((err) => console.error(err));
   }, []);

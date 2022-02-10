@@ -47,13 +47,13 @@ const Create = () => {
     setUpload(true);
     setFilename(file.name);
     await instance
-      .post("http://localhost:5656/posts/upload", formData, {
+      .post("/posts/upload", formData, {
         header: { "Content-type": "multipart/form-data" },
       })
       .then((res) =>
         setFields({
           ...fields,
-          photoUrl: `http://localhost:5656${res.data.url}`,
+          photoUrl: `${res.data.url}`,
         })
       )
       .catch((err) => console.error(err));

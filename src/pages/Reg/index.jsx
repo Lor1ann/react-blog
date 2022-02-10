@@ -19,7 +19,7 @@ const Reg = () => {
 
   const onSubmit = (data) => {
     instance
-      .post("http://localhost:5656/auth/register", data)
+      .post("/auth/register", data)
       .then(({ data }) => {
         if (data.hasOwnProperty("token")) {
           localStorage.setItem("token", JSON.stringify(data.token));

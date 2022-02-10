@@ -26,7 +26,7 @@ const Auth = () => {
 
   const onSubmit = (data) => {
     instance
-      .post("http://localhost:5656/auth/login", data)
+      .post("/auth/login", data)
       .then(({ data }) => {
         setUsersData(data);
         if (data.hasOwnProperty("token")) {
