@@ -30,7 +30,7 @@ const FullPost = () => {
 
   function getComms() {
     instance
-      .get(`http://localhost:5656/comments/post/${id}`)
+      .get(`/comments/post/${id}`)
       .then(({ data }) => setComms({ data }.data))
       .catch((err) => console.log(err));
   }
@@ -38,7 +38,7 @@ const FullPost = () => {
   function onSubmit(data) {
     instance
       .post(
-        "http://localhost:5656/comments",
+        "/comments",
         {
           text: data.text,
           postId: post._id,

@@ -63,7 +63,7 @@ const Create = () => {
     e.preventDefault();
 
     await instance
-      .post("http://localhost:5656/posts", fields, {
+      .post("/posts", fields, {
         headers: {
           Authorization: token,
         },
