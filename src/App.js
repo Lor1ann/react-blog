@@ -43,9 +43,9 @@ function App() {
     <div className="App">
       <Routes>
         {token ? (
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
         ) : (
-          <Route path="/Profile" element={<NonAuth />} />
+          <Route path="/profile" element={<NonAuth />} />
         )}
         {token ? (
           <Route path="/create" element={<Create />} />
@@ -54,7 +54,7 @@ function App() {
         )}
 
         <Route path="/" element={<Author />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/posts/:id" element={<Post />} />
         <Route exact path="/auth" element={<Auth />} />
         <Route exact path="/reg" element={<Reg />} />
         <Route path="*" element={<Err404 />} />
