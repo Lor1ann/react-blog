@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Comm from "../Comm";
 import { useForm } from "react-hook-form";
 import { instance } from "../../axios";
+import ReactMarkdown from "react-markdown";
 
 const FullPost = () => {
   const [comms, setComms] = React.useState(null);
@@ -59,7 +60,7 @@ const FullPost = () => {
             post.photoUrl
               ? {
                   background: ` linear-gradient(rgba(29, 29, 29, 0.6), rgba(29, 29, 29, 0.6)),
-       url(${post.photoUrl})  center center no-repeat
+       url(/${post.photoUrl})  center center no-repeat
          `,
                 }
               : { background: `white`, color: "black" }
@@ -85,7 +86,9 @@ const FullPost = () => {
             <h3>{post.description}</h3>
           </div>
         </div>
-        <div className={styles.articleContent}>{post.text}</div>
+        <div className={styles.articleContent}>
+          <ReactMarkdown>{post.text}</ReactMarkdown>
+        </div>
         {token && (
           <div className={styles.comms}>
             <div className={styles.commsTitle}>
