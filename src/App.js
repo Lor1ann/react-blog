@@ -7,7 +7,7 @@ import Auth from "./pages/Auth";
 import Reg from "./pages/Reg";
 import Profile from "./pages/Profile";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import { instance } from "./axios";
 import { SET_USER_DATA } from "./redux/actions/user";
 import Create from "./pages/Create";
 import NonAuth from "./pages/NonAuth";
@@ -17,6 +17,7 @@ function App() {
   const [token, setToken] = React.useState(null);
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line no-unused-vars
   const location = useLocation();
   function setUsersData(data) {
     dispatch(SET_USER_DATA(data));
@@ -27,7 +28,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    axios
+    instance
       .get("http://localhost:5656/auth/me", {
         headers: {
           Authorization: token,

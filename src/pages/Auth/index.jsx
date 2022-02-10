@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_USER_DATA } from "../../redux/actions/user";
@@ -25,7 +25,7 @@ const Auth = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
+    instance
       .post("http://localhost:5656/auth/login", data)
       .then(({ data }) => {
         setUsersData(data);

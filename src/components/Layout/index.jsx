@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Post from "../Posts";
 import style from "./Layout.module.scss";
-import axios from "axios";
+import { instance } from "../../axios";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
@@ -16,14 +16,14 @@ const Layout = () => {
   const [totalPages, setTotalPages] = React.useState(0);
   const limit = 5;
   React.useEffect(() => {
-    axios
+    instance
       .get(`http://localhost:5656/posts`)
       .then(({ data }) => setTotalPages(Math.ceil(data.total / limit)))
       .catch((err) => console.log(err));
   }, []);
 
   React.useEffect(() => {
-    axios
+    instance
       .get(
         `http://localhost:5656/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`
       )

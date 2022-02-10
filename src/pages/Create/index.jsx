@@ -4,7 +4,7 @@ import styles from "./Create.module.scss";
 import "easymde/dist/easymde.min.css";
 import Button from "@mui/material/Button";
 import SimpleMdeReact from "react-simplemde-editor";
-import axios from "axios";
+import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
@@ -46,7 +46,7 @@ const Create = () => {
     formData.append("file", file);
     setUpload(true);
     setFilename(file.name);
-    await axios
+    await instance
       .post("http://localhost:5656/posts/upload", formData, {
         header: { "Content-type": "multipart/form-data" },
       })
@@ -62,7 +62,7 @@ const Create = () => {
   async function onSubmit(e) {
     e.preventDefault();
 
-    await axios
+    await instance
       .post("http://localhost:5656/posts", fields, {
         headers: {
           Authorization: token,

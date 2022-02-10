@@ -3,7 +3,7 @@ import styles from "./Profile.module.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Post from "../../components/Posts";
-import axios from "axios";
+import { instance } from "../../axios";
 import Comm from "../../components/Comm";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -18,14 +18,10 @@ const Profile = () => {
   const [totalCommsPages, setTotalCommsPages] = React.useState(0);
   const [totalPostPages, setTotalPostPages] = React.useState(0);
 
-  console.log(posts);
-
   async function getComms() {
     try {
       const data = await (
-        await axios.get(
-          `http://localhost:5656/comments?limit=5&page=${commsPage}`
-        )
+        await instance.get(`/comments?limit=5&page=${commsPage}`)
       ).data;
       const dataComms = await data.items;
       console.log(dataComms);
@@ -40,7 +36,7 @@ const Profile = () => {
   async function getPosts() {
     try {
       const data = await (
-        await axios.get(`http://localhost:5656/posts?limit=5&page=${postsPage}`)
+        await instance.get(`/posts?limit=5&page=${postsPage}`)
       ).data;
 
       const dataPosts = await data.items;

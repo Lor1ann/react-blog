@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
 
 const Reg = () => {
@@ -18,7 +18,7 @@ const Reg = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
+    instance
       .post("http://localhost:5656/auth/register", data)
       .then(({ data }) => {
         if (data.hasOwnProperty("token")) {

@@ -3,7 +3,7 @@ import styles from "./FullPost.module.scss";
 import { useSelector } from "react-redux";
 import Comm from "../Comm";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { instance } from "../../axios";
 
 const FullPost = () => {
   const [comms, setComms] = React.useState(null);
@@ -22,21 +22,21 @@ const FullPost = () => {
     ];
 
   React.useEffect(() => {
-    axios
+    instance
       .get(`http://localhost:5656/posts/${id}`)
       .then(({ data }) => setPost(data))
       .catch((err) => console.error(err));
   }, []);
 
   function getComms() {
-    axios
+    instance
       .get(`http://localhost:5656/comments/post/${id}`)
       .then(({ data }) => setComms({ data }.data))
       .catch((err) => console.log(err));
   }
 
   function onSubmit(data) {
-    axios
+    instance
       .post(
         "http://localhost:5656/comments",
         {
