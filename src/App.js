@@ -1,13 +1,12 @@
 import "./App.scss";
 import React from "react";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Post from "./pages/Post";
 import Auth from "./pages/Auth";
 import Reg from "./pages/Reg";
 import Profile from "./pages/Profile";
 import { useDispatch } from "react-redux";
-import { instance } from "./axios";
 import { SET_USER_DATA } from "./redux/actions/user";
 import Create from "./pages/Create";
 import NonAuth from "./pages/NonAuth";
