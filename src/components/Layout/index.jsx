@@ -51,29 +51,31 @@ const Layout = () => {
                   />
                 );
               })}
-            <div className={style.pagination}>
-              <div className={style.buttons}>
-                <button
-                  disabled={postsPage === 1}
-                  type="button"
-                  onClick={() => {
-                    setPostsPage((prev) => prev - 1);
-                  }}
-                >
-                  <ArrowBackIcon />
-                </button>
-                <button
-                  disabled={postsPage === totalPages}
-                  type="button"
-                  onClick={() => {
-                    setPostsPage((prev) => prev + 1);
-                  }}
-                >
-                  <ArrowForwardIcon />
-                </button>
+            {posts && (
+              <div className={style.pagination}>
+                <div className={style.buttons}>
+                  <button
+                    disabled={postsPage === 1}
+                    type="button"
+                    onClick={() => {
+                      setPostsPage((prev) => prev - 1);
+                    }}
+                  >
+                    <ArrowBackIcon />
+                  </button>
+                  <button
+                    disabled={postsPage === totalPages}
+                    type="button"
+                    onClick={() => {
+                      setPostsPage((prev) => prev + 1);
+                    }}
+                  >
+                    <ArrowForwardIcon />
+                  </button>
+                </div>
+                <p>{`Cтраница ${postsPage} из ${totalPages}`}</p>
               </div>
-              <p>{`Cтраница ${postsPage} из ${totalPages}`}</p>
-            </div>
+            )}
           </div>
         )}
       </div>

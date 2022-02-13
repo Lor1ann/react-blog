@@ -1,5 +1,5 @@
 .comm {
-  width: 700px;
+  min-width: 500px;
   border-bottom: 1px solid #f1f1f1;
   padding: 20px;
   display: flex;
@@ -25,5 +25,11 @@
   }
   .commDelete:hover {
     color: #555555;
+  }
+}
+
+@media (max-width: 1320px) {
+  .comm {
+    min-width: 300px;
   }
 }
