@@ -20,11 +20,7 @@ const Post = ({ title, views, text, date, photo, id, onDelete }) => {
             </div>
           )}
           {photo ? (
-            <img
-              className={styles.postPhoto}
-              src={`http://localhost:5656${photo}`}
-              alt=""
-            />
+            <img className={styles.postPhoto} src={`${photo}`} alt="" />
           ) : null}
         </div>
       </Link>

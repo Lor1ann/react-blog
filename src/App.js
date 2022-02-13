@@ -1,6 +1,6 @@
 import "./App.scss";
 import React from "react";
-import { Author } from "./pages/Author";
+import Home from "./pages/Home";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Post from "./pages/Post";
 import Auth from "./pages/Auth";
@@ -47,7 +47,7 @@ function App() {
         ) : (
           <Route path="/edit" element={<NonAuth />} />
         )}
-        <Route path="/" element={<Author />} />
+        <Route path="/" element={<Home />} />
         <Route path="/posts/:id" element={<Post />} />
         <Route exact path="/auth" element={<Auth />} />
         <Route exact path="/reg" element={<Reg />} />

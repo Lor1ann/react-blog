@@ -1,9 +1,9 @@
 import React from "react";
-import style from "./Author.module.scss";
+import style from "./Home.module.scss";
 import authorImage from "./img/author.png";
 import Layout from "../../components/Layout";
 
-export const Author = (props) => {
+export const Home = (props) => {
   return (
     <div className={style.authorFlex}>
       <div className={style.author}>
