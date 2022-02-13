@@ -51,7 +51,7 @@ const Layout = () => {
                   />
                 );
               })}
-            {posts.length && (
+            {posts.length ? (
               <div className={style.pagination}>
                 <div className={style.buttons}>
                   <button
@@ -75,7 +75,7 @@ const Layout = () => {
                 </div>
                 <p>{`Cтраница ${postsPage} из ${totalPages}`}</p>
               </div>
-            )}
+            ) : null}
           </div>
         )}
       </div>
