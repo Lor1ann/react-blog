@@ -58,7 +58,7 @@ module.exports.upload = async (req, res) => {
   const { file } = req.files;
   const uploadPath = [
     process.cwd(),
-    "/public/uploads",
+    "/build/uploads",
     file.md5 + "_" + file.name,
   ].join("/");
 
@@ -67,7 +67,7 @@ module.exports.upload = async (req, res) => {
       return res.status(500).send(err);
     }
 
-    res.json({ url: uploadPath.split("/public")[1] });
+    res.json({ url: uploadPath.split("/build")[1] });
   });
 };
 
