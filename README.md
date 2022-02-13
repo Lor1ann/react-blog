@@ -4,12 +4,18 @@ React-blog
 
 Front:
 
-— React, Create React App 
+— React, Create React App
+
 — Redux, Redux-thunk
+
 — React Hook Form, yup
+
 — React Router
+
 — axios
+
 — SCSS, CSS Modules
+
 — Material UI
 
 Back:
