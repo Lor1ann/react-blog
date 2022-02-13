@@ -26,21 +26,8 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-<<<<<<< HEAD
     dispatch(SET_USER_DATA());
   }, []);
-=======
-    instance
-      .get("/auth/me", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then(({ data }) => {
-        setUsersData(data);
-      });
-  }, [token]);
->>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
 
   return (
     <div className="App">

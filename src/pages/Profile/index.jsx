@@ -25,15 +25,10 @@ const Profile = () => {
         await instance.get(`/comments?limit=5&page=${commsPage}`)
       ).data;
       const dataComms = await data.items;
-<<<<<<< HEAD
       const total = data.items.filter(
         (obj) => obj.user._id === user._id
       ).length;
       setTotalCommsPages(Math.ceil(total / 5));
-=======
-      console.log(dataComms);
-      setTotalCommsPages(Math.ceil(data.total / 5));
->>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
 
       setComms(dataComms.filter((obj) => obj.user._id === user._id));
     } catch (e) {
@@ -48,15 +43,10 @@ const Profile = () => {
       ).data;
 
       const dataPosts = await data.items;
-<<<<<<< HEAD
       const total = data.items.filter(
         (obj) => obj.user._id === user._id
       ).length;
       setTotalPostPages(Math.ceil(total / 5));
-=======
-
-      setTotalPostPages(Math.ceil(dataPosts.length / 5));
->>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
       setPosts(dataPosts.filter((obj) => obj.user._id === user._id));
     } catch (e) {
       console.error(e);
