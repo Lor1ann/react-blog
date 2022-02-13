@@ -4,10 +4,28 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_USER_DATA } from "../../redux/actions/user";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .min(6, "Слишком короткая почта")
+    .max(32, "Слишком длинная почта")
+    .email("Неверная почта")
+    .required("Это обязательное поле")
+    .trim(),
+  password: yup
+    .string()
+    .required("Это обязательное поле")
+    .min(5, "Неверный пароль")
+    .max(32, "Неверный пароль")
+    .trim(),
+});
 
 const Auth = () => {
   const dispatch = useDispatch();
@@ -22,11 +40,11 @@ const Auth = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    axios
-      .post("http://localhost:5656/auth/login", data)
+    instance
+      .post("/auth/login", data)
       .then(({ data }) => {
         setUsersData(data);
         if (data.hasOwnProperty("token")) {
@@ -61,15 +79,8 @@ const Auth = () => {
               label="Почта"
               variant="standard"
               error={!!errors.email}
-              {...register("email", {
-                pattern: {
-                  value:
-                    /^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm,
-                  message: "Это неверная почта!",
-                },
-              })}
+              {...register("email")}
               helperText={errors.email && errors.email.message}
-              required
             />
           </div>
           <div className={styles.password}>

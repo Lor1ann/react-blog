@@ -12,10 +12,11 @@
     display: flex;
     margin-right: 120px;
     align-items: center;
+    word-break: normal;
   }
 
   .searchInput {
-    animation: appearance 0.5s;
+    animation: appearance 1s;
     margin-right: 15px;
   }
 

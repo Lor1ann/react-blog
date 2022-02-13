@@ -1,14 +1,15 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import styles from "./Create.module.scss";
+import styles from "./Edit.module.scss";
 import "easymde/dist/easymde.min.css";
 import Button from "@mui/material/Button";
 import SimpleMdeReact from "react-simplemde-editor";
 import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
 
-const Create = () => {
+const Edit = () => {
   const token = JSON.parse(localStorage.getItem("token"));
+  const id = window.location.pathname.split("/")[2];
 
   const autofocusNoSpellcheckerOptions = React.useMemo(() => {
     return {
@@ -30,7 +31,34 @@ const Create = () => {
     text: "",
   });
   const navigate = useNavigate();
-  console.log(fields);
+
+  React.useEffect(() => {
+    async function getPost() {
+      try {
+        const data = await instance.get(`/posts/${id}`);
+        const post = data.data;
+        console.log(post);
+        if (post.photoUrl) {
+          setFields({
+            description: post.description,
+            title: post.title,
+            text: post.text,
+            photoUrl: post.photoUrl,
+          });
+        } else {
+          setFields({
+            description: post.description,
+            title: post.title,
+            text: post.text,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getPost();
+  }, [id]);
+
   function onSelect(e) {
     setUpload(false);
     setFilename(
@@ -63,7 +91,7 @@ const Create = () => {
     e.preventDefault();
 
     await instance
-      .post("/posts", fields, {
+      .patch(`/posts/${id}`, fields, {
         headers: {
           Authorization: token,
         },
@@ -101,7 +129,9 @@ const Create = () => {
           </div>
           <div className={styles.loader}>
             <div className={styles.loaderText}>
-              <textarea value={filename} />
+              <textarea
+                value={fields.photoUrl ? fields.photoUrl.split("/")[2] : null}
+              />
               <label htmlFor="inputFile">
                 <input
                   id="inputFile"
@@ -149,9 +179,10 @@ const Create = () => {
           </div>
         </form>
       </div>
+
       <Layout />
     </div>
   );
 };
 
-export default Create;
+export default Edit;

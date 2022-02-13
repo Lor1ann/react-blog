@@ -1,11 +1,10 @@
 import React from "react";
 import Drawer from "../Drawer";
 import Nav from "../Nav";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Post from "../Posts";
 import style from "./Layout.module.scss";
-import axios from "axios";
+import { instance } from "../../axios";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
@@ -16,17 +15,15 @@ const Layout = () => {
   const [totalPages, setTotalPages] = React.useState(0);
   const limit = 5;
   React.useEffect(() => {
-    axios
-      .get(`http://localhost:5656/posts`)
+    instance
+      .get(`/posts`)
       .then(({ data }) => setTotalPages(Math.ceil(data.total / limit)))
       .catch((err) => console.log(err));
   }, []);
 
   React.useEffect(() => {
-    axios
-      .get(
-        `http://localhost:5656/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`
-      )
+    instance
+      .get(`/posts?query=${searchValue}&limit=${limit}&page=${postsPage}`)
       .then(({ data }) => setPosts(data.items))
       .catch((err) => console.log(err));
   }, [postsPage, searchValue]);
@@ -43,19 +40,15 @@ const Layout = () => {
               )
               .map((obj) => {
                 return (
-                  <Link
+                  <Post
                     key={obj._id}
-                    to={`/post/${obj._id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Post
-                      title={obj.title}
-                      date={new Date(obj.createdAt)}
-                      text={obj.description}
-                      photo={obj.photoUrl}
-                      views={obj.views}
-                    />
-                  </Link>
+                    id={obj._id}
+                    title={obj.title}
+                    date={new Date(obj.createdAt)}
+                    text={obj.description}
+                    photo={obj.photoUrl}
+                    views={obj.views}
+                  />
                 );
               })}
             <div className={style.pagination}>

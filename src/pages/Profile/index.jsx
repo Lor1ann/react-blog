@@ -3,12 +3,13 @@ import styles from "./Profile.module.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Post from "../../components/Posts";
-import axios from "axios";
+import { instance } from "../../axios";
 import Comm from "../../components/Comm";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const Profile = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const [comms, setComms] = React.useState(null);
   const [posts, setPosts] = React.useState(null);
   const user = useSelector((state) => state.user);
@@ -21,15 +22,13 @@ const Profile = () => {
   async function getComms() {
     try {
       const data = await (
-        await axios.get(
-          `http://localhost:5656/comments?limit=5&page=${commsPage}`
-        )
+        await instance.get(`/comments?limit=5&page=${commsPage}`)
       ).data;
       const dataComms = await data.items;
       const total = data.items.filter(
         (obj) => obj.user._id === user._id
       ).length;
-      setTotalCommsPages(Math.ceil(total / 5) + 1);
+      setTotalCommsPages(Math.ceil(total / 5));
 
       setComms(dataComms.filter((obj) => obj.user._id === user._id));
     } catch (e) {
@@ -40,27 +39,59 @@ const Profile = () => {
   async function getPosts() {
     try {
       const data = await (
-        await axios.get(`http://localhost:5656/posts?limit=5&page=${postsPage}`)
+        await instance.get(`/posts?limit=5&page=${postsPage}`)
       ).data;
 
       const dataPosts = await data.items;
       const total = data.items.filter(
         (obj) => obj.user._id === user._id
       ).length;
-      setTotalPostPages(Math.ceil(total / 5) + 1);
+      setTotalPostPages(Math.ceil(total / 5));
       setPosts(dataPosts.filter((obj) => obj.user._id === user._id));
     } catch (e) {
       console.error(e);
     }
   }
 
+  async function onDeleteComm(id) {
+    const res = window.confirm("Вы точно хотите удалить комментарий?");
+    if (res) {
+      try {
+        await instance.delete(`/comments/${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        getComms();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  async function onDeletePost(id) {
+    const res = window.confirm("Вы точно хотите удалить пост?");
+    if (res) {
+      try {
+        await instance.delete(`/posts/${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        getPosts();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
   React.useEffect(() => {
     getPosts();
-  }, [postsPage]);
+  }, [user, postsPage]);
 
   React.useEffect(() => {
     getComms();
-  }, [commsPage]);
+  }, [user, commsPage]);
 
   return (
     <div className={styles.root}>
@@ -118,19 +149,16 @@ const Profile = () => {
             <div className={styles.posts}>
               {posts.map((obj) => {
                 return (
-                  <Link
+                  <Post
                     key={obj._id}
-                    to={`/post/${obj._id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Post
-                      title={obj.title}
-                      date={new Date(obj.createdAt)}
-                      text={obj.description}
-                      photo={obj.photoUrl}
-                      views={obj.views}
-                    />
-                  </Link>
+                    onDelete={onDeletePost}
+                    id={obj._id}
+                    title={obj.title}
+                    date={new Date(obj.createdAt)}
+                    text={obj.description}
+                    photo={obj.photoUrl}
+                    views={obj.views}
+                  />
                 );
               })}
               {posts.length !== 0 && (
@@ -166,7 +194,9 @@ const Profile = () => {
               {comms.map((obj) => {
                 return (
                   <Comm
+                    id={obj._id}
                     key={obj._id}
+                    onDelete={onDeleteComm}
                     text={obj.text}
                     username={obj.user.fullName}
                     createdAt={new Date(obj.createdAt).toLocaleDateString(

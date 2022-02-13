@@ -4,8 +4,32 @@ import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import { instance } from "../../axios";
 import { useNavigate } from "react-router-dom";
+
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  fullName: yup
+    .string()
+    .required("Это обязательное поле")
+    .min(4, "Слишком короткие имя и фамилия")
+    .max(50, "Слишком длинные имя и фамилия"),
+  email: yup
+    .string()
+    .min(6, "Слишком короткая почта")
+    .max(32, "Слишком длинная почта")
+    .email("Неверная почта")
+    .required("Это обязательное поле")
+    .trim(),
+  password: yup
+    .string()
+    .required("Это обязательное поле")
+    .min(5, "Слишком короткий пароль")
+    .max(32, "Неверный пароль неверный")
+    .trim(),
+});
 
 const Reg = () => {
   let nav = useNavigate();
@@ -15,11 +39,11 @@ const Reg = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    axios
-      .post("http://localhost:5656/auth/register", data)
+    instance
+      .post("/auth/register", data)
       .then(({ data }) => {
         if (data.hasOwnProperty("token")) {
           localStorage.setItem("token", JSON.stringify(data.token));
@@ -54,12 +78,7 @@ const Reg = () => {
               label="Имя и фамилия"
               variant="standard"
               error={!!errors.fullName}
-              {...register("fullName", {
-                pattern: {
-                  value: /^[A-ЯЁ][а-яё]+\s[A-ЯЁ][а-яё]+$/g,
-                  message: "Это неверные имя и фамилия!",
-                },
-              })}
+              {...register("fullName")}
               helperText={errors.fullName && errors.fullName.message}
               required
             />
@@ -70,13 +89,7 @@ const Reg = () => {
               label="Почта"
               variant="standard"
               error={!!errors.email}
-              {...register("email", {
-                pattern: {
-                  value:
-                    /^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm,
-                  message: "Это неверная почта!",
-                },
-              })}
+              {...register("email")}
               helperText={errors.email && errors.email.message}
               required
             />
@@ -91,7 +104,7 @@ const Reg = () => {
               {...register("password", {
                 pattern: {
                   value: /^[a-zA-Z0-9]+$/,
-                  message: "Это неверный пароль!",
+                  message: "Это невалидный пароль!",
                 },
               })}
               required

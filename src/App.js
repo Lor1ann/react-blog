@@ -7,36 +7,26 @@ import Auth from "./pages/Auth";
 import Reg from "./pages/Reg";
 import Profile from "./pages/Profile";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import { instance } from "./axios";
 import { SET_USER_DATA } from "./redux/actions/user";
 import Create from "./pages/Create";
 import NonAuth from "./pages/NonAuth";
 import Err404 from "./pages/404";
+import Edit from "./pages/Edit";
 
 function App() {
   const [token, setToken] = React.useState(null);
   const dispatch = useDispatch();
 
   const location = useLocation();
-  function setUsersData(data) {
-    dispatch(SET_USER_DATA(data));
-  }
 
   React.useEffect(() => {
     setToken(JSON.parse(localStorage.getItem("token")));
   }, []);
 
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5656/auth/me", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then(({ data }) => {
-        setUsersData(data);
-      });
-  }, [token]);
+    dispatch(SET_USER_DATA());
+  }, []);
 
   return (
     <div className="App">
@@ -51,9 +41,13 @@ function App() {
         ) : (
           <Route path="/create" element={<NonAuth />} />
         )}
-
+        {token ? (
+          <Route path="/edit/:id" element={<Edit />} />
+        ) : (
+          <Route path="/edit" element={<NonAuth />} />
+        )}
         <Route path="/" element={<Author />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/posts/:id" element={<Post />} />
         <Route exact path="/auth" element={<Auth />} />
         <Route exact path="/reg" element={<Reg />} />
         <Route path="*" element={<Err404 />} />
