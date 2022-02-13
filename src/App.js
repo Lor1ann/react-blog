@@ -18,6 +18,7 @@ function App() {
   const [token, setToken] = React.useState(null);
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line no-unused-vars
   const location = useLocation();
 
   React.useEffect(() => {
@@ -25,16 +26,29 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+<<<<<<< HEAD
     dispatch(SET_USER_DATA());
   }, []);
+=======
+    instance
+      .get("/auth/me", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(({ data }) => {
+        setUsersData(data);
+      });
+  }, [token]);
+>>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
 
   return (
     <div className="App">
       <Routes>
         {token ? (
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
         ) : (
-          <Route path="/Profile" element={<NonAuth />} />
+          <Route path="/profile" element={<NonAuth />} />
         )}
         {token ? (
           <Route path="/create" element={<Create />} />

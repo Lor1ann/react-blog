@@ -42,6 +42,7 @@ const Layout = () => {
                 return (
                   <Post
                     key={obj._id}
+<<<<<<< HEAD
                     id={obj._id}
                     title={obj.title}
                     date={new Date(obj.createdAt)}
@@ -49,6 +50,19 @@ const Layout = () => {
                     photo={obj.photoUrl}
                     views={obj.views}
                   />
+=======
+                    to={`/posts/${obj._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Post
+                      title={obj.title}
+                      date={new Date(obj.createdAt)}
+                      text={obj.description}
+                      photo={obj.photoUrl}
+                      views={obj.views}
+                    />
+                  </Link>
+>>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
                 );
               })}
             <div className={style.pagination}>

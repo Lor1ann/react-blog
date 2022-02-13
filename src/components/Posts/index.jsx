@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Post = ({ title, views, text, date, photo, id, onDelete }) => {
   return (
     <div className={styles.post}>
+<<<<<<< HEAD
       <Link to={`/posts/${id}`} style={{ textDecoration: "none" }}>
         <div className={styles.postContent}>
           {!photo ? (
@@ -28,6 +29,24 @@ const Post = ({ title, views, text, date, photo, id, onDelete }) => {
           ) : null}
         </div>
       </Link>
+=======
+      <div className={styles.postContent}>
+        {!photo ? (
+          <div className={styles.textContent} style={{ maxWidth: 700 }}>
+            <h3 className={styles.postTitle}>{title}</h3>
+            <p className={styles.postText}>{text}</p>
+          </div>
+        ) : (
+          <div className={styles.textContent} style={{ maxWidth: 520 }}>
+            <h3 className={styles.postTitle}>{title}</h3>
+            <p className={styles.postText}>{text}</p>
+          </div>
+        )}
+        {photo ? (
+          <img className={styles.postPhoto} src={`/${photo}`} alt="" />
+        ) : null}
+      </div>
+>>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
       <div className={styles.postInfo}>
         <p>{date.toLocaleDateString("ru-RU")}</p>
         <div className={styles.postViews}>

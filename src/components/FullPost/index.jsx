@@ -60,7 +60,11 @@ const FullPost = () => {
             post.photoUrl
               ? {
                   background: ` linear-gradient(rgba(29, 29, 29, 0.6), rgba(29, 29, 29, 0.6)),
+<<<<<<< HEAD
        url(http://localhost:5656${post.photoUrl})  center center 
+=======
+       url(/${post.photoUrl})  center center no-repeat
+>>>>>>> fb26fd75610eed98d364d6b44259e98e0ffbb2ac
          `,
                 }
               : { background: `white`, color: "black" }
