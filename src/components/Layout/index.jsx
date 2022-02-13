@@ -51,7 +51,7 @@ const Layout = () => {
                   />
                 );
               })}
-            {posts && (
+            {posts.length && (
               <div className={style.pagination}>
                 <div className={style.buttons}>
                   <button
