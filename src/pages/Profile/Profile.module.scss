@@ -1,0 +1,94 @@
+.profile {
+  font-family: Inter;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .profileTitle {
+    font-size: 52px;
+    font-weight: 800;
+    color: #0058d9;
+    margin-top: 130px;
+  }
+  .navLogo {
+    color: #0a3465;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .link {
+    margin: 23px 0 0 53px;
+    align-self: start;
+  }
+  .regDate {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 20px;
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #202020;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .filter {
+    margin-top: 35px;
+    display: flex;
+    div {
+      padding: 10px;
+    }
+    .articles {
+      cursor: pointer;
+      margin-right: 10px;
+      border-radius: 4px;
+    }
+    .comms {
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+  .posts {
+    animation: appearance 1s;
+  }
+  .comments {
+    animation: appearance 1s;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0 100px 0;
+  button {
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+
+  button:hover {
+    background-color: #e0e0e0;
+  }
+
+  p {
+    color: #aeb3b7;
+    font-weight: 500;
+  }
+
+  button:first-child {
+    margin-right: 10px;
+  }
+}

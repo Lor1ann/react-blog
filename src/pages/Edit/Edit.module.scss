@@ -1,0 +1,130 @@
+.createFlex {
+  display: flex;
+}
+
+.create {
+  font-family: Inter;
+  width: 90%;
+  padding: 40px 50px 0px 55px;
+  form {
+    max-width: 800px;
+  }
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0a3465;
+  }
+
+  textarea {
+    font-family: Inter;
+    resize: none;
+    color: #0a3465;
+    border-radius: 10px;
+    border: 1px solid #eceef1;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .title {
+    color: #2e2e2e;
+    border: none;
+    outline: none;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 52px;
+    margin-bottom: 24px;
+  }
+  .title::placeholder {
+    color: #d7d7d7;
+  }
+
+  .description {
+    margin-bottom: 30px;
+    textarea {
+      height: 100px;
+    }
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .loaderText {
+    display: flex;
+    align-items: center;
+
+    textarea {
+      height: 50px;
+      width: 400px;
+      margin-right: 20px;
+    }
+  }
+
+  .upload {
+    cursor: pointer;
+    display: flex;
+    margin-right: 20px;
+    white-space: nowrap;
+    max-width: 800px;
+    height: 50px;
+    align-items: center;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 3px;
+    outline: none;
+    color: #fff;
+    background-color: #6fcf97;
+    border: none;
+    min-width: 120px;
+
+    p {
+      color: inherit;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .upload:active {
+    background-color: #4f926b;
+  }
+
+  .upload:hover {
+    background-color: #4f926b;
+  }
+
+  button:hover {
+    color: rgb(241, 241, 241);
+    background-color: #6cc792;
+  }
+
+  .toPost {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      background-color: #ffdf36;
+      color: #68572d;
+      margin-bottom: 60px;
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .createFlex {
+    flex-direction: column;
+    .create {
+      margin: 0 auto;
+      padding: 40px 30px;
+      form {
+        max-width: 100%;
+      }
+    }
+  }
+}

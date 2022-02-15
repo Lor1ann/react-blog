@@ -1,0 +1,149 @@
+.nav {
+  padding: 21px 29px;
+  display: flex;
+  justify-content: space-between;
+  .navLogo {
+    color: #0a3465;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .navEnd {
+    display: flex;
+    margin-right: 120px;
+    align-items: center;
+    word-break: normal;
+  }
+
+  .searchInput {
+    animation: appearance 1s;
+    margin-right: 15px;
+  }
+
+  .search {
+    position: relative;
+    margin-right: 10px;
+    .searchIcon {
+      cursor: pointer;
+      font-size: 30px;
+      color: #dedede;
+    }
+    .searchIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+
+  @keyframes appearance {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .user {
+    position: relative;
+    cursor: pointer;
+    .userIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .userIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+  .logout {
+    position: relative;
+    cursor: pointer;
+    .logoutIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .logoutIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+  .add {
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    .addIcon {
+      font-size: 30px;
+      color: #dedede;
+    }
+    .addIcon:hover {
+      color: #b4b4b4;
+    }
+  }
+  .add:hover::after {
+    content: "Написать";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    animation: appearance 0.4s;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .user:hover::after {
+    content: "Войти";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    animation: appearance 0.4s;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .search:hover::after {
+    content: "Поиск";
+    opacity: 0.9;
+    position: absolute;
+    top: 100%;
+    right: -80%;
+    animation: appearance 0.4s;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .logout:hover::after {
+    content: "Выйти";
+    opacity: 0.9;
+    position: absolute;
+    animation: appearance 0.4s;
+    top: 100%;
+    right: -80%;
+    padding: 6px 10px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+
+@media (max-width: 1320px) {
+  .nav {
+    margin-top: 40px;
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    .navLogo {
+      margin-right: 150px;
+    }
+    .navEnd {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.mainFlex {
+  display: flex;
+  animation: appearance 1.3s;
+}
+@media (max-width: 1320px) {
+  .mainFlex {
+    flex-direction: column;
+  }
+}

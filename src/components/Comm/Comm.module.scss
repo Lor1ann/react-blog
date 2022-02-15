@@ -1,0 +1,35 @@
+.comm {
+  min-width: 500px;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  .commInfo {
+    display: flex;
+    justify-content: space-between;
+    .commCreatedAt {
+      color: #c1c1c1;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .commUser {
+      color: #373737;
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
+  .commDelete {
+    cursor: pointer;
+    align-self: flex-end;
+    color: #969696;
+  }
+  .commDelete:hover {
+    color: #555555;
+  }
+}
+
+@media (max-width: 1320px) {
+  .comm {
+    min-width: 300px;
+  }
+}

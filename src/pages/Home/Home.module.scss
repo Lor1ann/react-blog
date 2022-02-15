@@ -1,0 +1,74 @@
+.authorFlex {
+  display: flex;
+  animation: appearance 1.5s;
+}
+
+.author {
+  margin-top: 20px;
+  box-sizing: border-box;
+  border-right: solid 1px #f1f1f1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #202020;
+
+  .title {
+    font-size: 72px;
+    text-align: center;
+    margin: 0;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    text-align: center;
+    font-weight: 500;
+    color: #aaa;
+    font-size: 34px;
+    margin-bottom: 23px;
+  }
+  .authorImage {
+    width: 584px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .about {
+    max-width: 585px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    h3 {
+      color: #202020;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-top: 0;
+      font-size: 16px;
+      line-height: 28px;
+    }
+  }
+}
+
+@keyframes appearance {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1320px) {
+  .authorFlex {
+    flex-direction: column;
+  }
+
+  .author {
+    max-width: 100%;
+    align-items: center;
+    margin: 0;
+    padding: 20px 30px;
+    border-bottom: solid 1px #f1f1f1;
+  }
+}

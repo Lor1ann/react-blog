@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,600&display=swap");
+
+.post {
+  min-width: 600px;
+  margin-top: 20px;
+  border-bottom: solid 1px #e2e2e2;
+  p {
+    margin: 0;
+  }
+
+  .postViews {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    svg {
+      padding-top: 5px;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
+  }
+  line-height: 24px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  .postInfo {
+    align-items: center;
+    color: #c1c1c1;
+    display: flex;
+    margin: 0;
+
+    .postDelete,
+    .postEdit {
+      cursor: pointer;
+      margin: 0 0 0 auto;
+    }
+    .postDelete:hover,
+    .postEdit:hover {
+      color: #818181;
+    }
+
+    .postEdit {
+      margin-left: 10px;
+    }
+  }
+
+  .postContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .postTitle {
+      font-family: Nunito;
+      font-weight: 800;
+      font-size: 24px;
+      color: #080b0e;
+      line-height: 30px;
+      margin: 0 0 15px 0;
+    }
+    .postText {
+      line-height: 24px;
+      color: #898c90;
+      margin-bottom: 20px;
+    }
+    .textContent {
+      margin-right: 20px;
+      margin: 0;
+    }
+    .postPhoto {
+      border-radius: 20px;
+      margin-left: 15px;
+      height: 165px;
+      width: 190px;
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .post {
+    min-width: 500px;
+  }
+}
