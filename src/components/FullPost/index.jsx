@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./FullPost.module.scss";
-import { useSelector } from "react-redux";
-import Comm from "../Comm";
-import { useForm } from "react-hook-form";
-import { instance } from "../../axios";
-import ReactMarkdown from "react-markdown";
+import React from 'react';
+import styles from './FullPost.module.scss';
+import { useSelector } from 'react-redux';
+import Comm from '../Comm';
+import { useForm } from 'react-hook-form';
+import { instance } from '../../axios';
+import ReactMarkdown from 'react-markdown';
 
 const FullPost = () => {
   const [comms, setComms] = React.useState(null);
@@ -14,13 +14,10 @@ const FullPost = () => {
     getComms();
   }, []);
 
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem('token'));
   const { register, handleSubmit, reset } = useForm();
 
-  const id =
-    window.location.pathname.split("/")[
-      window.location.pathname.split("/").length - 1
-    ];
+  const id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
 
   React.useEffect(() => {
     instance
@@ -39,12 +36,12 @@ const FullPost = () => {
   function onSubmit(data) {
     instance
       .post(
-        "/comments",
+        '/comments',
         {
           text: data.text,
           postId: post._id,
         },
-        { headers: { Authorization: token } }
+        { headers: { Authorization: token } },
       )
       .then(() => getComms())
       .catch((err) => console.log(err));
@@ -63,20 +60,19 @@ const FullPost = () => {
        url(${post.photoUrl})  center center 
          `,
                 }
-              : { background: `white`, color: "black" }
-          }
-        >
+              : { background: `white`, color: 'black' }
+          }>
           <div className={styles.article}>
             <div className={styles.articleInfo}>
               <ul>
                 <li>
                   <p>
-                    {new Date(post.createdAt).toLocaleDateString("ru-RU", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
+                    {new Date(post.createdAt).toLocaleDateString('ru-RU', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: 'numeric',
                     })}
                   </p>
                 </li>
@@ -87,7 +83,7 @@ const FullPost = () => {
           </div>
         </div>
         <div className={styles.articleContent}>
-          <ReactMarkdown>{post.text}</ReactMarkdown>
+          <ReactMarkdown children={post.text} />
         </div>
         {token && (
           <div className={styles.comms}>
@@ -102,16 +98,13 @@ const FullPost = () => {
                         key={obj._id}
                         text={obj.text}
                         username={obj.user.fullName}
-                        createdAt={new Date(obj.createdAt).toLocaleDateString(
-                          "ru-RU",
-                          {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            hour: "numeric",
-                            minute: "numeric",
-                          }
-                        )}
+                        createdAt={new Date(obj.createdAt).toLocaleDateString('ru-RU', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                        })}
                       />
                     );
                   })}
@@ -123,7 +116,7 @@ const FullPost = () => {
                   name="text"
                   cols="30"
                   rows="10"
-                  {...register("text", { required: true })}
+                  {...register('text', { required: true })}
                 />
                 <button type="submit" className={styles.submitComm}>
                   Отправить

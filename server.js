@@ -1,11 +1,11 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const fileUpload = require("express-fileupload");
-const { initRoutes } = require("./blog-api/routes");
-const morgan = require("morgan");
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
+const { initRoutes } = require('./blog-api/routes');
+const morgan = require('morgan');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const app = express();
 
@@ -14,12 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   fileUpload({
     createParentPath: true,
-  })
+  }),
 );
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
-app.use(express.static(__dirname + "/build"));
+app.use(express.static(__dirname + '/build'));
 
 initRoutes(app);
 
